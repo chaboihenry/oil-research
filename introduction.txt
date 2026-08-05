@@ -1,0 +1,33 @@
+A synopis on the impact of the closure of the Strait of Hormuz on global oil supply and demand
+
+What shocks were/are observed in global demand, how does that translate to gas prices, oil prices, and natural gas prices? 
+
+How does this effect buisness and everday consumers? 
+    Potential ways to prepare safeguards to prevent crisis created by the Iranian War or any other
+    war that leads to supply shortages of oil in USA. 
+
+Research Question: 
+"How did the 2026 Strait of Hormuz closure change crude oil flows and import composition for the US and China relative to a fixed pre-crisis baseline, 
+and how differently did the shock pass through to retail fuel prices in each country?"
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+DATA: Where is it sourced, cleaning decisions taken, and preliminary visualizations
+
+- Need global oil supply and demand data
+    - prices in $ per barrel
+    - production & demand from everything single country possible
+    - oil reserve data
+    - Need to circumvent issues with oil reserve data not available in countries like China for example
+
+- Sources:
+EIA API Key? 
+
+ 
+
+
+
+
+
+
+
+

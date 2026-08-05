@@ -1,0 +1,14 @@
+adjustment_date,effective_date,notice_type,gasoline_change_yuan_t,diesel_change_yuan_t,gasoline_implied_change_yuan_t,diesel_implied_change_yuan_t,beijing_gasoline_yuan_t,beijing_diesel_yuan_t,notice_url,intervention_notice_url,retrieved_date,notes
+2026-02-03,2026-02-04,mechanism,205,195,,,8640,7645,https://www.ndrc.gov.cn/xwdt/xwfb/202602/t20260203_1403566.html,,2026-08-04,pre-crisis
+2026-02-24,2026-02-25,mechanism,175,170,,,8815,7815,https://www.ndrc.gov.cn/xwdt/xwfb/202602/t20260224_1403852.html,,2026-08-04,last pre-crisis adjustment; closure 28 Feb
+2026-03-09,2026-03-10,mechanism,695,670,,,9510,8485,https://www.ndrc.gov.cn/xwdt/xwfb/202603/t20260309_1404075.html,,2026-08-04,first post-closure adjustment
+2026-03-23,2026-03-24,intervention,1160,1115,2205,2120,10670,9600,https://www.ndrc.gov.cn/xwdt/xwfb/202603/t20260323_1404295.html,https://www.ndrc.gov.cn/xwdt/xwfb/202603/t20260323_1404296.html,2026-08-04,wedge in separate notice; cites US-Israel-Iran conflict and record Middle East crude
+2026-04-07,2026-04-08,intervention,420,400,800,770,11090,10000,https://www.ndrc.gov.cn/xwdt/xwfb/202604/t20260407_1404528.html,,2026-08-04,wedge stated inside adjustment notice; no separate document
+2026-04-21,2026-04-22,mechanism,-555,-530,,,10535,9470,https://www.ndrc.gov.cn/xwdt/xwfb/202604/t20260421_1404789.html,,2026-08-04,first decrease; controls not mentioned
+2026-05-08,2026-05-09,mechanism,320,310,,,10855,9780,https://www.ndrc.gov.cn/xwdt/xwfb/202605/t20260508_1405100.html,,2026-08-04,
+2026-05-21,2026-05-22,mechanism,75,70,,,10930,9850,https://www.ndrc.gov.cn/xwdt/xwfb/202605/t20260521_1405346.html,,2026-08-04,smallest adjustment in window; peak Beijing gasoline level
+2026-06-04,2026-06-05,mechanism,-525,-505,,,10405,9345,https://www.ndrc.gov.cn/xwdt/xwfb/202606/t20260604_1405695.html,,2026-08-04,
+2026-06-18,2026-06-19,mechanism,-515,-495,,,9890,8850,https://www.ndrc.gov.cn/xwdt/xwfb/202606/t20260618_1405957.html,,2026-08-04,coincides with 17-19 Jun reopening under US-Iran MOU
+2026-07-03,2026-07-04,mechanism,-950,-915,,,8940,7935,https://www.ndrc.gov.cn/xwdt/xwfb/202607/t20260703_1406245.html,,2026-08-04,largest single decrease in window
+2026-07-17,2026-07-18,mechanism,300,290,,,9240,8225,https://www.ndrc.gov.cn/xwdt/xwfb/202607/t20260717_1406559.html,,2026-08-04,
+2026-07-31,2026-08-01,mechanism,685,655,,,9925,8880,https://www.ndrc.gov.cn/xwdt/xwfb/202607/t20260731_1406853.html,,2026-08-04,

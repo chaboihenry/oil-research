@@ -22,3 +22,11 @@ against 800 under the standard mechanism
   https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis
   https://hormuzstraitmonitor.com/crisis-timeline/
   https://straits.live/
+
+The 4 big questions that can provide an adequate answer to the research question:
+
+Did the disruption happen, how big?	hormuz-transits-daily
+How did flows change?	china-quantities-monthly, us-quantities-weekly
+How did composition change?	us-crude-imports-by-origin-monthly
+Pass-through to pump prices?	crude-prices-daily + us-retail-prices-weekly + china-retail-prices-events
+

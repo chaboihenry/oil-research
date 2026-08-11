@@ -22,6 +22,7 @@ executing @ file:///home/conda/feedstock_root/build_artifacts/executing_17567293
 fastjsonschema==2.22.1
 fonttools==4.63.0
 fqdn==1.5.1
+fredapi==0.5.2
 h11==0.16.0
 httpcore==1.0.9
 httpx==0.28.1
@@ -70,6 +71,7 @@ packaging==26.0
 pandas==3.0.5
 pandocfilters==1.5.1
 parso @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_parso_1777722955/work
+patsy==1.0.2
 pillow==12.3.0
 platformdirs @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_platformdirs_1784661349/work
 prometheus_client==0.26.0
@@ -93,11 +95,13 @@ rfc3339-validator==0.1.4
 rfc3986-validator==0.1.1
 rfc3987-syntax==1.1.0
 rpds-py==2026.6.3
+scipy==1.17.1
 seaborn==0.13.2
 Send2Trash==2.1.0
 six @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_six_1753199211/work
 soupsieve==2.9.1
 stack_data @ file:///home/conda/feedstock_root/build_artifacts/stack_data_1733569443808/work
+statsmodels==0.14.6
 terminado==0.18.1
 tinycss2==1.5.1
 tornado @ file:///D:/bld/tornado_1781006762358/work
@@ -112,3 +116,4 @@ webcolors==25.10.0
 webencodings==0.5.1
 websocket-client==1.9.0
 widgetsnbextension==4.0.15
+xlrd==2.0.2

@@ -5,9 +5,9 @@ Date columns: `period` (monthly, month-start) or `date` (daily/weekly).
 
 ---
 
-## Processed — what I analyse from
+## Processed — where analysis comes from
 
-One file per frequency. I never merge across frequencies into a master table. Monthly data on daily rows would invent observations. I join at the point of a question instead.
+One file per frequency. I never merge across frequencies into a master table. Monthly data on daily rows would invent observations; join at the point of a question instead.
 
 | File                                       | Freq           | Coverage                 | Contents                                               |
 | ------------------------------------------ | -------------- | ------------------------ | ------------------------------------------------------ |
@@ -23,7 +23,7 @@ One file per frequency. I never merge across frequencies into a master table. Mo
 
 | File                           | Trap                                                                                              |
 | ------------------------------ | ------------------------------------------------------------------------------------------------- |
-| `crude-prices-daily`         | Nulls are single-market holidays. I don't impute — a filled price is a trade that never happened |
+| `crude-prices-daily`         | Nulls are single-market holidays. No imputation — a filled price is a trade that never happened |
 | `hormuz-transits-daily`      | Zero-call days give an undefined ratio. Masked, not filled                                        |
 | `us-quantities-weekly`       | Crude stocks total = ex-SPR + SPR. Use two of three, never all                                    |
 | both weekly files              | Different weekdays. Fri vs Mon. They don't merge on date                                          |
@@ -169,7 +169,7 @@ Chinese refineries run spring turnarounds Mar–May. I decompose seasonally befo
 | ----------------------- | --------------------------------------------------- |
 | China imports by origin | No free English source has crude × origin × month |
 | Demand elasticities     | Cut from the question at the start                  |
-| China SPR               | Unpublished. I won't estimate it                    |
+| China SPR               | Unpublished.                                        |
 | War-risk premiums       | No clean series                                     |
 
 On China origins: Comtrade has no China monthly detail. GACC Table 16 is value-only at HS 2-digit — Ch. 27 mixes crude, coal, LNG, products — and omits Iraq, Kuwait, Angola. My design is asymmetric by necessity. I state it as a limitation rather than hide it.

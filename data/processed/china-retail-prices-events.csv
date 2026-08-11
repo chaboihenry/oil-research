@@ -1,9 +1,35 @@
 adjustment_date,effective_date,notice_type,gasoline_change_yuan_t,diesel_change_yuan_t,gasoline_implied_change_yuan_t,diesel_implied_change_yuan_t,beijing_gasoline_yuan_t,beijing_diesel_yuan_t,notice_url,intervention_notice_url,retrieved_date,notes
+2025-01-16,2025-01-17,mechanism,340,325,,,9675,8640,https://www.ndrc.gov.cn/xwdt/xwfb/202501/t20250116_1395727.html,,2026-08-10,baseline; PDF sourced
+2025-02-06,2025-02-07,deferred,0,0,,,9675,8640,,,,"baseline; level chain-derived, PDF not yet downloaded"
+2025-02-19,2025-02-20,mechanism,-170,-160,,,9505,8480,,,,"baseline; level chain-derived, PDF not yet downloaded"
+2025-03-05,2025-03-06,mechanism,-135,-130,,,9370,8350,https://www.ndrc.gov.cn/xwdt/xwfb/202503/t20250305_1396430.html,,2026-08-10,baseline; PDF sourced
+2025-03-19,2025-03-20,mechanism,-280,-270,,,9090,8080,,,,"baseline; level chain-derived, PDF not yet downloaded"
+2025-04-02,2025-04-03,mechanism,230,220,,,9320,8300,,,,"baseline; level chain-derived, PDF not yet downloaded"
+2025-04-17,2025-04-18,mechanism,-480,-465,,,8840,7835,https://www.ndrc.gov.cn/xwdt/xwfb/202504/t20250417_1397240.html,,2026-08-10,baseline; PDF sourced
+2025-04-30,2025-05-01,deferred,0,0,,,8840,7835,https://www.ndrc.gov.cn/xwdt/xwfb/202504/t20250430_1397516.html,,2026-08-10,baseline; PDF sourced
+2025-05-19,2025-05-20,mechanism,-230,-220,,,8610,7615,,,,"baseline; level chain-derived, PDF not yet downloaded"
+2025-06-03,2025-06-04,mechanism,65,60,,,8675,7675,,,,"baseline; level chain-derived, PDF not yet downloaded"
+2025-06-17,2025-06-18,mechanism,260,255,,,8935,7930,https://www.ndrc.gov.cn/xwdt/xwfb/202506/t20250617_1398486.html,,2026-08-10,baseline; PDF sourced
+2025-07-01,2025-07-02,mechanism,235,225,,,9170,8155,https://www.ndrc.gov.cn/xwdt/xwfb/202507/t20250701_1398919.html,,2026-08-10,baseline; PDF sourced
+2025-07-15,2025-07-16,mechanism,-130,-125,,,9040,8030,,,,"baseline; level chain-derived, PDF not yet downloaded"
+2025-07-29,2025-07-30,deferred,0,0,,,9040,8030,,,,"baseline; level chain-derived, PDF not yet downloaded"
+2025-08-12,2025-08-13,deferred,0,0,,,9040,8030,,,,"baseline; level chain-derived, PDF not yet downloaded"
+2025-08-26,2025-08-27,mechanism,-180,-175,,,8860,7855,https://www.ndrc.gov.cn/xwdt/xwfb/202508/t20250826_1400056.html,,2026-08-10,baseline; PDF sourced
+2025-09-09,2025-09-10,deferred,0,0,,,8860,7855,,,,"baseline; level chain-derived, PDF not yet downloaded"
+2025-09-23,2025-09-24,deferred,0,0,,,8860,7855,,,,"baseline; level chain-derived, PDF not yet downloaded"
+2025-10-13,2025-10-14,mechanism,-75,-70,,,8785,7785,https://www.ndrc.gov.cn/xwdt/xwfb/202510/t20251013_1400937.html,,2026-08-10,baseline; PDF sourced
+2025-10-27,2025-10-28,mechanism,-265,-255,,,8520,7530,https://www.ndrc.gov.cn/xwdt/xwfb/202510/t20251027_1401193.html,,2026-08-10,baseline; PDF sourced
+2025-11-10,2025-11-11,mechanism,125,120,,,8645,7650,,,,"baseline; level chain-derived, PDF not yet downloaded"
+2025-11-24,2025-11-25,mechanism,-70,-65,,,8575,7585,,,,"baseline; level chain-derived, PDF not yet downloaded"
+2025-12-08,2025-12-09,mechanism,-55,-55,,,8520,7530,https://www.ndrc.gov.cn/xwdt/xwfb/202512/t20251208_1402287.html,,2026-08-10,baseline; PDF sourced
+2025-12-22,2025-12-23,mechanism,-170,-165,,,8350,7365,https://www.ndrc.gov.cn/xwdt/xwfb/202512/t20251222_1402523.html,,2026-08-10,baseline; PDF sourced
+2026-01-06,2026-01-07,deferred,0,0,,,8350,7365,,,,"baseline; level chain-derived, PDF not yet downloaded"
+2026-01-20,2026-01-21,mechanism,85,85,,,8435,7450,,,,"baseline; level chain-derived, PDF not yet downloaded"
 2026-02-03,2026-02-04,mechanism,205,195,,,8640,7645,https://www.ndrc.gov.cn/xwdt/xwfb/202602/t20260203_1403566.html,,2026-08-04,pre-crisis
 2026-02-24,2026-02-25,mechanism,175,170,,,8815,7815,https://www.ndrc.gov.cn/xwdt/xwfb/202602/t20260224_1403852.html,,2026-08-04,last pre-crisis adjustment; closure 28 Feb
 2026-03-09,2026-03-10,mechanism,695,670,,,9510,8485,https://www.ndrc.gov.cn/xwdt/xwfb/202603/t20260309_1404075.html,,2026-08-04,first post-closure adjustment
-2026-03-23,2026-03-24,intervention,1160,1115,2205,2120,10670,9600,https://www.ndrc.gov.cn/xwdt/xwfb/202603/t20260323_1404295.html,https://www.ndrc.gov.cn/xwdt/xwfb/202603/t20260323_1404296.html,2026-08-04,wedge in separate notice; cites US-Israel-Iran conflict and record Middle East crude
-2026-04-07,2026-04-08,intervention,420,400,800,770,11090,10000,https://www.ndrc.gov.cn/xwdt/xwfb/202604/t20260407_1404528.html,,2026-08-04,wedge stated inside adjustment notice; no separate document
+2026-03-23,2026-03-24,intervention,1160,1115,2205.0,2120.0,10670,9600,https://www.ndrc.gov.cn/xwdt/xwfb/202603/t20260323_1404295.html,https://www.ndrc.gov.cn/xwdt/xwfb/202603/t20260323_1404296.html,2026-08-04,wedge in separate notice; cites US-Israel-Iran conflict and record Middle East crude
+2026-04-07,2026-04-08,intervention,420,400,800.0,770.0,11090,10000,https://www.ndrc.gov.cn/xwdt/xwfb/202604/t20260407_1404528.html,,2026-08-04,wedge stated inside adjustment notice; no separate document
 2026-04-21,2026-04-22,mechanism,-555,-530,,,10535,9470,https://www.ndrc.gov.cn/xwdt/xwfb/202604/t20260421_1404789.html,,2026-08-04,first decrease; controls not mentioned
 2026-05-08,2026-05-09,mechanism,320,310,,,10855,9780,https://www.ndrc.gov.cn/xwdt/xwfb/202605/t20260508_1405100.html,,2026-08-04,
 2026-05-21,2026-05-22,mechanism,75,70,,,10930,9850,https://www.ndrc.gov.cn/xwdt/xwfb/202605/t20260521_1405346.html,,2026-08-04,smallest adjustment in window; peak Beijing gasoline level

@@ -30,3 +30,100 @@ How did flows change?	china-quantities-monthly, us-quantities-weekly
 How did composition change?	us-crude-imports-by-origin-monthly
 Pass-through to pump prices?	crude-prices-daily + us-retail-prices-weekly + china-retail-prices-events
 
+HORMUZ 2026 — SOURCES
+
+DATA
+  EIA API v2 — US weekly petroleum supply; monthly crude imports by origin.
+    https://www.eia.gov/opendata/
+  EIA, World Oil Transit Chokepoints (Country Analysis Brief).
+    https://www.eia.gov/international/content/analysis/special_topics/World_Oil_Transit_Chokepoints/
+    PDF: .../World_Oil_Transit_Chokepoints/wotc.pdf
+    1H25 Hormuz: 20.9 mb/d total oil flows = ~20% of global petroleum liquids
+    consumption and one-quarter of global maritime traded oil; of which ~15 mb/d
+    crude and condensate, ~5.5 mb/d refined products. Exposure: China 5.4 vs
+    US 0.43 mb/d.
+  FRED — DCOILBRENTEU, DCOILWTICO, daily USD/bbl. https://fred.stlouisfed.org/
+  JODI Oil World Database — China refinery intake, crude imports (KBD). https://www.jodidata.org/
+  GACC, "(14) Major Import Commodities in Quantity and Value", monthly.
+    China Customs Statistics: http://english.customs.gov.cn/statics/report/monthly.html
+    Crude quantity in 10,000 tonnes, value in US$1,000. Each month is published at
+    its own UUID URL (e.g. http://english.customs.gov.cn/Statics/61decf8c-80f4-4baf-a74c-b1661fe45beb.html
+    for 5.2024) with no constructable pattern; per-file URLs are recorded in
+    docs/data_inventory.md. Three column layouts (7/8/9 cols) across the 13 files.
+  NDRC Price Department — refined oil notices, 2025-01 to 2026-07; 89-octane / No.0 diesel,
+    yuan/tonne, effective 24:00. Index https://www.ndrc.gov.cn/xwdt/ztzl/gncpyjg/
+    Per-notice URLs in china-retail-prices-events.csv
+  WTO DataLab Strait of Hormuz Trade Tracker. https://datalab.wto.org/Strait-of-Hormuz-Trade-Tracker
+
+POLICY
+  《石油价格管理办法》, issued under 发改价格〔2016〕64号, NDRC, 13 Jan 2016.
+    https://www.ndrc.gov.cn/xxgk/zcfb/tz/201601/t20160113_963566.html
+    Art. 6 — crude bands: <=$40 priced as if $40; $40-80 normal processing margin;
+      >$80 the refiner processing margin is progressively deducted, to zero margin;
+      >=$130 prices in principle not raised or raised less, with fiscal measures.
+    Art. 7 — adjustment every 10 working days, effective 24:00 on publication date;
+      changes under 50 yuan/t are not made and are carried into the next cycle;
+      under special circumstances (significant rise in the general price level, major
+      emergency, or abnormal international oil price movement) the NDRC may, with
+      State Council approval, suspend, delay, or narrow an adjustment, resuming
+      normal rules once the circumstance ends.
+    Note: the Art. 6 margin squeeze is inside NDRC's stated "implied" change, so the
+    2026 wedge (2,205 -> 1,160 and 800 -> 420 yuan/t) is Art. 7 discretion only.
+  OFAC General Licence X, 2026-06-22. https://ofac.treasury.gov/recent-actions/20260622_33
+
+LITERATURE
+  Bacon, R.W. (1991) "Rockets and Feathers: The Asymmetric Speed of Adjustment of UK
+    Retail Gasoline Prices to Cost Changes." Energy Economics 13 (July).
+  Borenstein, S., Cameron, A.C. & Gilbert, R. (1997) "Do Gasoline Prices Respond
+    Asymmetrically to Crude Oil Price Changes?" Quarterly Journal of Economics
+    112(1): 305-339. doi:10.1162/003355397555118
+    Free PDF: https://faculty.haas.berkeley.edu/borenste/download/QJE97GasAsym.pdf
+    Finds nearly all of the response to a crude increase appears at the pump within
+    4 weeks, while decreases pass through gradually over 8 weeks. Basis for the US
+    pass-through estimate here, simplified to a distributed lag in first differences.
+  Kristoufek, L. & Lunackova, P. "Rockets and Feathers Meet Joseph." arXiv:1407.5466 —
+    fractional-integration critique of the ECM framework; finds no asymmetry in six of
+    seven markets. Cited as a limitation, not estimable on this sample.
+  FTC Bureau of Economics, "Gasoline Price Changes and the Petroleum Industry."
+  Kiel Policy Brief 206 (Mar 2026) — models this closure.
+
+CHRONOLOGY
+  UKOilWatch Hormuz Timeline (83 sourced events) — primary index for chronology_table.xlsx.
+    https://ukoilwatch.com/hormuz-timeline
+  Wikipedia: 2026 Strait of Hormuz crisis; 2026 Strait of Hormuz campaign.
+  World Bank Data Blog — Hormuz disruption and oil prices.
+  Per-event news URLs (CNBC, CBS, CNN, Al Jazeera, Al-Monitor, RFE/RL) in the Source
+    column of chronology_table.xlsx; transcribed from UKOilWatch — verify before quoting.
+
+CAVEATS
+  Throughput: ~15 mb/d is crude and condensate only; ~20.9 mb/d includes refined
+    products. Both EIA 1H25. State which is used.
+  NDRC basket weighting unpublished — implied changes taken as stated, not reproducible.
+  No free source for China crude imports by origin; design is asymmetric by necessity.
+  Origin is not route: Yanbu and Fujairah bypass Hormuz, so Gulf-origin is an upper bound.
+  Aggregator sites used only to locate notices, never as data.
+
+
+Steps. US first:
+
+Align crude to the retail week — decide which crude days map to a Monday-stamped retail observation, and handle the holiday gaps
+ADF tests on levels and differences — establishes which specification is legitimate rather than assumed
+Distributed lag in differences, lags 0–8, estimated on pre-crisis data
+Cumulative pass-through = sum of coefficients, converted to cents per gallon per dollar per barrel
+Crisis period — re-estimate or interact with a dummy, and test whether pass-through changed
+Brent and WTI both, reported as a pair
+
+Then China:
+
+Wedge summary — 24 baseline windows at zero, two interventions totalling 1,425 yuan/t
+Convert to $/bbl equivalent for a comparable magnitude
+Timing relative to the crude peak — when administered pricing binds
+
+Figures worth building:
+
+Crude daily with your chronology events marked — orientation for the whole prices section
+US retail against crude, both indexed to the baseline start
+Distributed lag coefficients with confidence bands — the standard pass-through figure, and the one a reader will look for
+Beijing gasoline actual versus counterfactual — the path prices would have taken had the full implied changes passed through. The widening gap is the wedge, visible at a glance. This is your strongest figure
+Cumulative absorbed yuan/t over time
+US and China retail side by side, both indexed to 28 Feb

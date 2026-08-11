@@ -58,3 +58,5 @@ notebooks/scratch/
 # but exclude anything oversized or regenerable:
 data/interim/
 *.parquet
+
+*test*.csv

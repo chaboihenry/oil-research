@@ -1,0 +1,585 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{graphicx,booktabs,amsmath}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage{titlesec,enumitem,flafter}
+\usepackage{url}\Urlmuskip=0mu plus 1mu\relax
+\pagestyle{plain}
+
+% keep a heading with the text that follows it
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection.}{0.5em}{}
+\titlespacing*{\section}{0pt}{1.4ex plus .3ex}{0.7ex}
+\titlespacing*{\subsection}{0pt}{1.1ex plus .2ex}{0.5ex}
+\widowpenalty=10000
+\clubpenalty=10000
+\brokenpenalty=10000
+\setlength{\parskip}{0.35em}
+% floats: prefer top of column, never mid-paragraph
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\dbltopfraction}{0.95}
+\renewcommand{\bottomfraction}{0.7}
+\renewcommand{\textfraction}{0.08}
+\renewcommand{\floatpagefraction}{0.6}
+\renewcommand{\dblfloatpagefraction}{0.6}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{1}
+\setcounter{totalnumber}{3}
+\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
+\setlength{\intextsep}{10pt plus 2pt minus 2pt}
+
+\title{\vspace{-2.2em}\textbf{The 2026 Strait of Hormuz Closure:\\Crude Flows, Import Composition, and Retail\\Pass-Through in the United States and China}\vspace{-0.4em}}
+\author{Henry Vianna \quad---\quad University of Toronto}
+\date{\today}
+
+\begin{document}
+\maketitle
+\vspace{-1.5em}
+
+\section{RESEARCH QUESTION AND DESIGN}
+
+How did the 2026 Strait of Hormuz closure change crude oil flows and
+import composition for the US and China relative to a fixed pre-crisis
+baseline, and how differently did the shock pass through to retail fuel
+prices in each economy?
+
+This comparison is motivated by an exposure asymmetry. The United States
+imports around 0.43 mb/d of Hormuz-transiting crude, whereas China
+imports around 5.4 mb/d through the same chokepoint (EIA, World Oil
+Transit Chokepoints, 1H2025). This implies an exposure ratio between
+China and the US of roughly 12:1. The two countries also differ
+institutionally. US pump prices are determined by market fluctuations,
+in contrast to China, where the NDRC administers prices under a
+published formula. Therefore, crude pass-through to pump prices is
+estimated econometrically for the US and measured as a policy wedge for
+China. These are different quantities and are never placed in the same
+regression.
+
+\textbf{Design constraints.} Treatment is ongoing and multistage; there
+is no clean post-period. There is no control group, since oil is a
+single global market. The closure is confounded with the concurrent
+Iran war, Iran's own export collapse, and the US naval blockade of
+Iranian ports declared on 12 April. These cannot be separated using
+observational data alone. Every residual reported below is therefore a
+crisis-period effect rather than a closure-specific one.
+
+Demand was deliberately excluded from the question, as it is not
+observable at this horizon. The original interest in the effect on a
+typical citizen was sharpened into retail price pass-through, which is
+observable in both countries.
+
+\textbf{Baseline.} The baseline is fixed at 28 Feb 2025 -- 27 Feb 2026
+and is never rolling. Because most series are monthly, the window is
+rendered two ways --- Mar-2025 to Feb-2026 and Feb-2025 to Jan-2026 ---
+and every estimate is reported across both. The second window exists
+because February 2026 shows evidence of pre-positioning, and including
+an inflated month in the baseline would inflate every measured decline.
+
+\section{DATA AND VALIDATION}
+
+Seven processed datasets were built from EIA, JODI, GACC, FRED, NDRC and
+WTO DataLab sources. The organising principle is one file per
+observation frequency, and never a master table. Broadcasting monthly
+data onto daily rows invents observations, so joins are performed at the
+point of a specific question, which keeps the aggregation choice visible
+in the analysis rather than buried in the data.
+
+Several cleaning decisions materially affect the results. JODI reports
+five units per observation, so failing to filter on \texttt{UNIT\_MEASURE}
+quintuples every row, and \texttt{CONVBBL} is the tonne-to-barrel
+conversion factor rather than a quantity. GACC publishes Table 14 in
+three different column layouts across the thirteen files used, so rows
+are located by commodity rather than by position. EIA's import series
+places aggregate codes (\texttt{NUS-Z00}, \texttt{ME0}, \texttt{MN0},
+\texttt{MP0}) alongside individual countries, so summing without
+excluding them triple-counts.
+
+\textbf{Validation.} Four independent checks were passed. US country
+sums equal the \texttt{NUS-Z00} aggregate exactly in all 89 months.
+Chinese volumes computed from GACC tonnages agree with JODI in 10 of 12
+overlapping months. The SPR pipeline reproduces the announced 2022
+strategic release at $-985.9$ kb/d against a stated 1 mb/d, using no
+information about that policy. And the chain of announced NDRC price
+changes reconciles with the published Beijing price levels across all 25
+adjustment windows.
+
+\section{DID THE DISRUPTION OCCUR?}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{figures/hormuz-disruption-overview.png}
+\caption{Strait of Hormuz transits, Mar 2025 -- Jul 2026. Shaded region
+is the fixed baseline; dashed line marks the 28 Feb 2026 closure.}
+\end{figure}
+
+Tanker calls and cargo volumes both fell by a factor of 10 to 12 against
+baseline. This was tested across three baseline definitions
+(equal-length, pre-spike, and fixed-year) because a pre-closure run-up
+in tanker calls --- above 80 per day in mid-February against 30 to 40 in
+December and January --- suggested the baseline itself might be
+contaminated by pre-positioning. The fixed-year baseline gives
+$12.07\times$ and the other two give approximately $10\times$, so the
+result does not depend on the choice.
+
+Two further observations support the interpretation. Container traffic
+collapsed alongside tanker traffic, which indicates the disruption was
+not tanker-specific. And average cargo per transit rose from a stable
+level near 47,000 tonnes per call to peaks above 120,000, meaning the
+transits that continued were substantially fuller. This is consistent
+with only escorted or high-value convoys crossing.
+
+\section{FLOW DISRUPTION}
+
+\subsection*{China}
+
+Seasonal factors were estimated on 2019--2025 only, so that the
+treatment period could not contaminate the profile. Each month was
+normalised by its own year's mean, which removes level differences
+between years, and the resulting ratios were collapsed by calendar
+month. Chinese refinery intake proves close to aseasonal, with a range
+of only 7 percentage points across the year and no spring turnaround
+signature. Crude imports are more seasonal, with an 11-point range.
+This matters because seasonality was the most obvious competing
+explanation for the observed decline, and it can now be ruled out on
+evidence rather than assertion.
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{lrr}
+\toprule
+\textbf{2026} & \textbf{Intake} & \textbf{Imports} \\
+\midrule
+March & 87 (0.5\%) & 254 (2.1\%) \\
+April & 2{,}412 (14.9\%) & 2{,}281 (19.2\%) \\
+May & 4{,}138 (25.6\%) & 4{,}057 (34.2\%) \\
+\bottomrule
+\end{tabular}
+\caption{Chinese seasonally adjusted shortfall below baseline, kb/d, with percentage of baseline in parentheses.}
+\label{tab:china-flows}
+\end{table}
+
+March is
+statistically indistinguishable from baseline. This is consistent with
+the three to four week Gulf-to-China shipping lag, since March arrivals
+were largely February loadings, and it means April is the first fully
+treated month. The escalation profile across the three months matches
+the event chronology.
+
+The May import shortfall is approximately 75\% of China's 5.4 mb/d
+Hormuz exposure. It is below the physical ceiling, as it must be, and
+close enough to it to be consistent with the loss of most Hormuz supply
+while non-Hormuz suppliers continued.
+
+\textbf{No inventory buffering.} Crude entering Chinese refineries comes
+from imports plus domestic production, net of stock movements, so the
+gap between intake and imports isolates the latter two. That gap sat 24
+and 12 kb/d above its baseline of 4,283 in April and May, which is under
+half a percent. Refiners cut runs in proportion to the import shortfall
+rather than drawing down inventories. Given that Chinese crude stocks
+are commonly estimated near one billion barrels, this appears to have
+been a choice rather than a constraint.
+
+\subsection*{United States}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{figures/us-quantities-bar.png}
+\caption{US crude flow deviations from the Mar 2025 -- Feb 2026
+baseline, kb/d. Not adjusted for seasonality.}
+\end{figure}
+
+Every monthly deviation in total US crude imports falls below $2\sigma$
+against a month-over-month noise floor of 340 kb/d. This is not
+evidence that no effect occurred. Maximum Hormuz exposure is 430 kb/d,
+so a complete loss of every Hormuz barrel would register at only
+$1.26\sigma$. In other words, the month-to-month
+variation in total US imports is comparable in size to the entire
+quantity at risk, so even the largest disruption physically possible
+would be hidden inside ordinary fluctuation. The series cannot answer
+the question, whatever the true effect turned out to be. This
+calculation was performed before any estimation, so the standard was set
+independently of the result.
+
+The adjustment ran through other channels entirely. Measured against
+series-specific noise floors:
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{lrr}
+\toprule
+\textbf{May 2026} & \textbf{Deviation} & \textbf{$\sigma$} \\
+\midrule
+Crude exports & $+1{,}411$ & 4.2 \\
+SPR draw & $-1{,}300$ & $>$10 \\
+Commercial stock draw & $-855$ & --- \\
+Crude imports & $-245$ & 0.7 \\
+\bottomrule
+\end{tabular}
+\caption{US crude flow deviations for May 2026 against series-specific month-over-month noise floors.}
+\label{tab:us-flows}
+\end{table}
+
+Exports rose by three to five times the amount by which
+imports fell. If the United States had been scrambling to cover a
+domestic shortfall, exports would have fallen. Instead, the strategic
+reserve was drawn at a rate exceeding the 2022 release while more crude
+was sent abroad. The US was not absorbing a supply shock so much as
+supplying a tight global market, with the reserve financing it.
+
+\section{IMPORT COMPOSITION}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{figures/us-crude-import-composition.png}
+\caption{US crude import shares by origin region. Dashed line marks the
+closure.}
+\end{figure}
+
+Disaggregating by origin resolves what the aggregate could not.
+Gulf-origin crude (Saudi Arabia, Iraq, Kuwait, UAE) fell 354 kb/d in May
+2026, which is $2.3\sigma$ and a decline of roughly two thirds, and the
+result holds across both baseline windows. The Gulf-origin series is
+smaller and far less volatile than total imports, so the same disruption
+registers as a much larger multiple of that series' own noise: $2.3\sigma$
+here against $0.7\sigma$ in the aggregate. Measuring the channel that was
+actually disrupted, rather than the total it sits inside, is what makes
+the effect visible.
+
+Latin America absorbed the entire shortfall and more, rising 420 kb/d at
+$3.2\sigma$, while every other region fell. North America was flat at
+$0.19\sigma$ despite supplying 4,248 kb/d at baseline. Canada is eight
+times the Gulf's volume with obvious spare capacity, and it did not step
+up.
+
+This points to grade compatibility rather than volume availability as
+the binding constraint. Gulf Coast refineries are configured for
+medium-sour crude, and heavy-sour Latin American barrels are a closer
+substitute than light-sweet Canadian synthetic. It should be stressed
+that this is inferred from which regions moved, not from crude assay
+data; contract structure or freight economics could produce the same
+pattern.
+
+February 2026 Gulf-origin imports ran 48\% above baseline before
+collapsing. This is the same pre-positioning signature observed in
+mid-February tanker calls and in the March commercial stock build.
+
+\section{RETAIL PASS-THROUGH}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{figures/passthrough-comparison.png}
+\caption{Gasoline, actual against counterfactual. Left: Beijing maximum
+retail price against the path implied by the NDRC formula. Right: US
+retail against a projection from a pre-crisis pass-through model.}
+\end{figure}
+
+\subsection*{United States}
+
+Augmented Dickey-Fuller tests fail to reject a unit root in levels for
+all four series and reject decisively in first differences, so
+estimation proceeds in differences. This is a necessary step rather
+than a formality: a regression between two $I(1)$ series in levels is
+spurious. Weekly changes in retail price are regressed on weekly
+changes in crude at lags 0 through 8, with HAC standard errors
+(maxlags = 8) to account for the serial correlation that overlapping lag
+windows induce. The specification follows Borenstein, Cameron and
+Gilbert (1997), simplified to a distributed lag. Daily crude is
+aggregated to Friday-ending weeks and matched to the following Monday's
+retail survey, so that no pump price is regressed on crude prices that
+had not yet been observed.
+
+Cumulative pass-through is the sum of the nine estimated coefficients
+--- lag 0, the contemporaneous week, through lag 8 --- expressed in
+dollars per gallon for each dollar per barrel of crude. Complete
+mechanical pass-through is $1/42 = 0.0238$, since a barrel contains 42
+gallons.
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{llrr}
+\toprule
+\textbf{Product} & \textbf{Benchmark} & \textbf{Cumulative} & \textbf{s.e.} \\
+\midrule
+Gasoline & Brent & 0.0213 & 0.0029 \\
+Gasoline & WTI & 0.0244 & 0.0038 \\
+Diesel & Brent & 0.0253 & 0.0064 \\
+Diesel & WTI & 0.0280 & 0.0068 \\
+\bottomrule
+\end{tabular}
+\caption{Cumulative US pass-through, \$/gal per \$/bbl, estimated on pre-crisis data. Complete mechanical pass-through is $1/42 = 0.0238$.}
+\label{tab:passthrough}
+\end{table}
+
+No $t$-statistic against the benchmark exceeds 1 in absolute
+value. Pre-crisis US pass-through is therefore statistically
+indistinguishable from complete, for both products and both benchmarks.
+Brent and WTI also do not differ meaningfully from one another, which
+means the near-tripling of the Brent-WTI spread during the crisis cannot
+be read off these coefficients.
+
+\textbf{Counterfactual.} Rather than re-estimating on the crisis window,
+which would leave 22 observations against 10 parameters, the pre-crisis
+model is applied to crisis-period crude with nothing fitted on crisis
+data. Predicted weekly changes are cumulated from the last pre-crisis
+retail level to give a counterfactual price path.
+
+By late July, gasoline sat 77 cents per gallon and diesel 97 cents per
+gallon above that path. However, the mean weekly residual is
+insignificant, with $t$ between 0.94 and 1.42, and the three largest
+weeks account for essentially the entire gap while the remaining
+nineteen net to under half a cent. Those weeks are 9 March, 27 April
+and 4 May, each immediately following an escalation event: the IRGC's
+confirmation of the closure, the naval blockade, and the re-closure. In
+the week of 4 May, retail rose 32.9 cents while crude was falling.
+
+This is a discrete-shock pattern rather than a change in pass-through
+regime. The natural mechanisms are refining margin expansion or a risk
+premium at the pump, neither of which can be tested without crack spread
+data.
+
+\subsection*{China}
+
+The NDRC publishes an implied price change only when it chooses not to
+follow the formula. Substituting the actual change wherever no implied
+figure exists therefore yields a complete full-pass-through series,
+which is cumulated from the 3 February Beijing level to give a
+counterfactual path.
+
+Across the 24 consecutive adjustment windows from February 2025 to
+January 2026, no narrowing notice was issued. Two were issued within
+six weeks of the closure.
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Date} & \textbf{Implied} & \textbf{Actual} & \textbf{Absorbed} \\
+\midrule
+23 Mar 2026 & 2{,}205 & 1{,}160 & 1{,}045 \\
+7 Apr 2026 & 800 & 420 & 380 \\
+\bottomrule
+\end{tabular}
+\caption{NDRC interventions, yuan per tonne of gasoline. Implied figures are published by NDRC only where they deviate from the actual adjustment.}
+\label{tab:ndrc}
+\end{table}
+
+In total 1,425 yuan per tonne of gasoline increase was
+withheld, equivalent to \$24.42 per barrel, and 1,375 yuan per tonne
+(\$26.89/bbl) for diesel. The conversion uses 8.5 bbl/tonne for gasoline
+and 7.45 for diesel, reflecting their densities of roughly 0.74 and
+0.845 t/m$^3$. The exchange rate is 6.865
+CNY/USD, the DEXCHUS mean over March and April 2026, a period in which
+the rate moved only 1.4\%. Beijing
+gasoline peaked at 10,930 against a counterfactual 11.4\% higher, with
+diesel 12.1\% higher.
+
+The wedge steps twice and then holds perfectly flat across the remaining
+eight adjustments, including a 950 yuan per tonne reduction on 3 July.
+The constraint on prices was therefore active only while crude
+was rising steeply, and was let go once it fell back. This says
+something specific about \emph{when} an administered pricing regime
+actually departs from its own formula, which a single average
+pass-through figure would average away entirely.
+
+It is worth being precise about the legal basis. Article 6 of the
+Petroleum Price Management Measures already deducts the refiner
+processing margin progressively above \$80 per barrel, and that
+deduction is contained within the implied figure NDRC publishes. The
+wedge is therefore Article 7 discretion in full, which requires State
+Council approval. Article 7 is also cited routinely for sub-50 yuan
+deferrals, so its invocation alone is not evidence of intervention; the
+narrowing of a large adjustment is.
+
+\section{SYNTHESIS}
+
+The exposure asymmetry did not translate into a proportional consumer
+outcome. China lost roughly a third of its crude imports and cut
+refinery runs in step. The United States lost two thirds of a channel
+worth 8\% of its imports and replaced it within a month. Yet US pump
+prices rose 54\% between February and May, from \$2.91 to \$4.48 for
+gasoline and \$3.72 to \$5.60 for diesel, while Beijing gasoline rose
+26\%. The country with twelve times the physical exposure experienced
+half the retail increase.
+
+The explanation is institutional rather than physical. US pass-through
+was complete before the crisis and remained so through it, so the crude
+price reached consumers because nothing stood between them and it.
+China's formula would have delivered a comparable increase, and the
+state overrode it twice.
+
+Products were hit harder than crude in both countries. Chinese refined
+product imports fell 48.6\% year on year against 29.0\% for crude, and
+in the US the diesel counterfactual gap of 97 cents exceeded gasoline's
+77 cents, while in China diesel's absorbed wedge was larger per barrel
+than gasoline's. Two countries, independent datasets, and the same
+asymmetry. This is consistent with Hormuz crude being distillate-rich
+and with the Gulf being a major refined product exporter in its own
+right.
+
+Each country used the buffer available to it. The US had exports, a
+strategic reserve, commercial inventories and grade-flexible
+substitutes, and drew on all four while allowing prices to clear. China
+had administered prices and used them, while refinery throughput
+absorbed the physical shortfall. Neither response is more effective in
+general; they are different margins of adjustment available to
+differently structured systems.
+
+\section{CAVEATS AND LIMITATIONS}
+
+\textbf{Identification.} There is no control group, and the closure
+cannot be separated from the war, Iran's export collapse, or the US
+blockade. Every residual reported is a crisis-period effect.
+
+\textbf{Statistical power.} US crude import volume cannot detect this
+shock at any plausible effect size. The counterfactual test rests on 22
+observations and cannot rule out a modest persistent shift in
+pass-through.
+
+\textbf{Asymmetric design.} No free English-language source provides
+Chinese crude imports by origin at monthly frequency, so composition is
+analysed only for the US. Comtrade lacks Chinese monthly detail, and
+GACC Table 16 is value-only at HS 2-digit, where Chapter 27 mixes crude
+with coal, LNG and products, and omits Iraq, Kuwait and Angola.
+Separately, China reports close to zero crude from Iran while Malaysia
+shows \$1.83bn of Chapter 27 trade, so transshipment makes any
+``imports from Iran'' series unusable.
+
+\textbf{Origin is not route.} Saudi and UAE barrels can reach open water
+via the Yanbu and Fujairah pipelines, so Gulf-origin US imports are an
+upper bound on Hormuz-transiting volume, and part of the observed
+decline may be rerouting rather than lost supply.
+
+\textbf{Measurement error correlates with treatment.} AIS spoofing and
+dark-vessel activity increased during the closure, biasing transit
+counts in an unknown direction.
+
+\textbf{Specification.} Working in first differences discards the
+long-run equilibrium relationship an error-correction model would
+capture, despite all four series being $I(1)$ at the same order.
+Asymmetry between rising and falling crude prices is assumed away, even
+though the window contains both. Kristoufek and Lunackova argue these
+series are fractionally integrated, in which case the standard
+$I(0)/I(1)$ dichotomy underlying the ADF test is misspecified;
+fractional integration is not estimable on a sample of this length.
+
+\textbf{Unverifiable inputs.} The NDRC crude basket weighting is not
+published, so implied changes are taken as stated and cannot be
+independently reproduced. Chinese inventory data is unpublished. The
+Chinese pass-through fraction is endpoint-sensitive --- 0.62 measured at
+the May peak and 0.47 at the end of July --- because a fixed absolute
+wedge is divided by a moving denominator; the absolute figures are the
+stable ones.
+
+\textbf{Comparability.} NDRC standard products are 89-octane gasoline
+and No. 0 diesel, which are not comparable in levels to US 87 AKI.
+Changes are comparable; levels are not.
+
+\textbf{Unresolved.} A JODI-GACC discrepancy of roughly 14,500 kbbl in
+January and February 2026 offsets across the pair to 0.3\% but remains
+undiagnosed, and February is the treatment-onset month. JODI reports
+Chinese refining at 16.4 mb/d for January 2026 against EIA's 14.2 for
+2024, which appears definitional but is unresolved. Kiel Policy Brief
+206 models this exact closure and has not yet been reviewed against
+these results.
+
+
+\newpage
+\section*{SOURCES AND REFERENCES}
+\small
+\setlength{\parskip}{0.3em}
+
+\subsection*{Data}
+\begin{description}[leftmargin=0.9em,style=nextline,itemsep=0.2em,parsep=0pt,topsep=0.2em]
+\item[EIA API v2] US weekly petroleum supply (crude imports, exports, production,
+refinery inputs, commercial and SPR stocks) and monthly crude imports by country of
+origin. \url{https://www.eia.gov/opendata/}
+\item[EIA, World Oil Transit Chokepoints] Country Analysis Brief.
+\url{https://www.eia.gov/international/content/analysis/special_topics/World_Oil_Transit_Chokepoints/}
+--- 1H2025 Hormuz flows of 20.9 mb/d total oil, of which approximately 15 mb/d crude
+and condensate and 5.5 mb/d refined products, representing around 20\% of global
+petroleum liquids consumption and one quarter of maritime traded oil. Exposure:
+China 5.4 mb/d against US 0.43 mb/d. This paper uses the 20.9 mb/d total-liquids
+figure for headline throughput.
+\item[FRED, St.\ Louis Fed] \texttt{DCOILBRENTEU} and \texttt{DCOILWTICO}, daily
+USD/bbl; \texttt{DEXCHUS}, daily CNY per USD. \url{https://fred.stlouisfed.org/}
+\item[JODI Oil World Database] Chinese monthly refinery intake
+(\texttt{REFINOBS}) and crude imports (\texttt{TOTIMPSB}) in KBD, with
+\texttt{CONVBBL} = 7.32 bbl/tonne. \url{https://www.jodidata.org/}
+\item[GACC] ``(14) Major Import Commodities in Quantity and Value'', monthly.
+Quantity in 10,000 tonnes, value in US\$1,000.
+\url{http://english.customs.gov.cn/statics/report/monthly.html} --- each month is
+published at its own UUID URL with no constructable pattern; per-file URLs are
+recorded in \texttt{docs/data\_inventory.md}.
+\item[NDRC Price Department] Refined oil price adjustment notices, Jan 2025 --
+Jul 2026. Standard products are 89-octane gasoline and No.~0 vehicle diesel, priced
+in yuan per tonne as provincial and central-city maxima inclusive of consumption
+tax, VAT and surcharges, effective 24:00 on the adjustment date.
+\url{https://www.ndrc.gov.cn/xwdt/ztzl/gncpyjg/} --- per-notice URLs are recorded in
+\texttt{china-retail-prices-events.csv}.
+\item[WTO DataLab] Strait of Hormuz Trade Tracker; daily transits and cargo volumes.
+\url{https://datalab.wto.org/Strait-of-Hormuz-Trade-Tracker}
+\end{description}
+
+\subsection*{Policy and Regulation}
+\begin{description}[leftmargin=0.9em,style=nextline,itemsep=0.2em,parsep=0pt,topsep=0.2em]
+\item[Petroleum Price Management Measures (\emph{Shiyou Jiage Guanli Banfa})]
+NDRC, issued under Fagai Jiage [2016] No.~64, 13 January 2016.
+\url{https://www.ndrc.gov.cn/xxgk/zcfb/tz/201601/t20160113_963566.html}
+Article 6 sets the crude price bands: at or below \$40/bbl prices are set as if crude
+were \$40; between \$40 and \$80 a normal processing margin applies; above \$80 the
+refiner processing margin is progressively deducted toward zero; at or above \$130
+prices are in principle not raised, or raised less, with accompanying fiscal
+measures. Article 7 sets a ten-working-day adjustment cycle effective at 24:00 on
+the publication date, provides that changes below 50 yuan/tonne are not made and
+carry into the next cycle, and permits the NDRC, with State Council approval, to
+suspend, delay or narrow an adjustment under special circumstances.
+\item[US Treasury OFAC] General Licence X, 22 June 2026, authorising Iranian oil
+sales through 21 August 2026.
+\url{https://ofac.treasury.gov/recent-actions/20260622_33}
+\end{description}
+
+\subsection*{Literature}
+\begin{description}[leftmargin=0.9em,style=nextline,itemsep=0.2em,parsep=0pt,topsep=0.2em]
+\item[Bacon, R.\ W.\ (1991)] ``Rockets and Feathers: The Asymmetric Speed of
+Adjustment of UK Retail Gasoline Prices to Cost Changes.''
+\emph{Energy Economics} 13 (July).
+\item[Borenstein, S., Cameron, A.\ C.\ \& Gilbert, R.\ (1997)] ``Do Gasoline Prices
+Respond Asymmetrically to Crude Oil Price Changes?'' \emph{Quarterly Journal of
+Economics} 112(1): 305--339. \texttt{doi:10.1162/003355397555118}.
+\url{https://faculty.haas.berkeley.edu/borenste/download/QJE97GasAsym.pdf} ---
+finds that nearly all of the response to a crude increase reaches the pump within
+four weeks while decreases pass through gradually over eight. Methodological basis
+for the US pass-through estimate here, simplified from an error-correction model to
+a distributed lag in first differences.
+\item[Kristoufek, L.\ \& Lunackova, P.] ``Rockets and Feathers Meet Joseph:
+Reinvestigating the Oil-Gasoline Asymmetry on the International Markets.''
+\texttt{arXiv:1407.5466} --- argues these series are fractionally integrated, so the
+standard $I(0)/I(1)$ framework underlying error-correction specifications is
+misspecified, and finds no asymmetry in six of seven national markets. Cited here
+as a limitation; fractional integration is not estimable on this sample.
+\item[FTC, Bureau of Economics] ``Gasoline Price Changes and the Petroleum
+Industry.'' Survey of asymmetric pass-through evidence.
+\item[Kiel Institute] Policy Brief 206, March 2026 --- models a Strait of Hormuz
+closure scenario. Not yet reviewed against these results.
+\end{description}
+
+\subsection*{Chronology}
+\begin{description}[leftmargin=0.9em,style=nextline,itemsep=0.2em,parsep=0pt,topsep=0.2em]
+\item[UKOilWatch] Hormuz Timeline, 83 individually sourced events; primary index used
+to construct \texttt{docs/chronology\_table.xlsx}.
+\url{https://ukoilwatch.com/hormuz-timeline}
+\item[Wikipedia] ``2026 Strait of Hormuz crisis''; ``2026 Strait of Hormuz campaign''.
+\item[World Bank Data Blog] ``Strait of Hormuz disruption sends oil prices surging.''
+\item[News reporting] Per-event URLs (CNBC, CBS News, CNN, Al Jazeera, Al-Monitor,
+RFE/RL, gCaptain, Kpler via CNBC) are recorded in the Source column of
+\texttt{chronology\_table.xlsx}. Most were transcribed from the UKOilWatch index
+rather than retrieved individually; live-update pages in particular are overwritten
+as stories develop and should be verified before quotation.
+\end{description}
+
+\subsection*{Conversion Factors}
+7.32 bbl/tonne for Chinese crude (JODI's own \texttt{CONVBBL}); 8.5 bbl/tonne for
+gasoline and 7.45 for diesel in the yuan-per-tonne to dollar-per-barrel conversion;
+6.865 CNY/USD, the DEXCHUS mean over March--April 2026, over which the series ranged
+1.4\%; 42 US gallons per barrel.
+
+\end{document}
